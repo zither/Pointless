@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+	<title>Pointless</title>
+	<subtitle>The Static Blog Generator</subtitle>
+	<link href="http://scar.simcz.tw/Pointlessatom.xml" rel="self" />
+	<link href="http://scar.simcz.tw/Pointless" />
+	<id>urn:uuid:62a282e2-7558-51d9-b9ee-900037d87dcc</id>
+	<updated>2013-05-24T14:27:52+08:00</updated>
+	<entry>
+		<title>Welcome</title>
+		<link href="http://scar.simcz.tw/Pointlessarticle/1970/01/01" />
+		<id>urn:uuid:b2bc5b31-7b1d-c3dd-65dd-72df2bf4df05</id>
+		<updated>1970-01-01T00:00:00+08:00</updated>
+		<summary type="html">&lt;h1&gt;Hi, Welcome to use Pointless&lt;/h1&gt;
+</summary>
+	</entry>
+</feed>
