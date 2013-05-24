@@ -4,12 +4,12 @@
 	<subtitle>The Static Blog Generator</subtitle>
 	<link href="http://scar.simcz.tw/Pointless/atom.xml" rel="self" />
 	<link href="http://scar.simcz.tw/Pointless/" />
-	<id>urn:uuid:016cd5ce-0184-2560-b297-97d2a430f423</id>
-	<updated>2013-05-24T15:24:37+08:00</updated>
+	<id>urn:uuid:cca38ec5-8776-b18e-a718-82a7edda9610</id>
+	<updated>2013-05-24T15:28:08+08:00</updated>
 	<entry>
 		<title>Welcome</title>
 		<link href="http://scar.simcz.tw/Pointless/article/1970/01/01" />
-		<id>urn:uuid:b4550a86-5e70-1107-d545-2e4cfa25f3b9</id>
+		<id>urn:uuid:4804961f-ce51-907b-f819-d91af7019137</id>
 		<updated>1970-01-01T00:00:00+08:00</updated>
 		<summary type="html">&lt;h1&gt;Hi, Welcome to use Pointless&lt;/h1&gt;
 </summary>
