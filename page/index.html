@@ -25,7 +25,7 @@
 					<input type="submit" />
 				</form>
 				<a href="/Pointless/">Home</a>
-				<a href="/Pointless/tag/GettingStarted">Getting Started</a>
+				<a href="/Pointless/about">About</a>
 			</div>
 			<div id="container"><div id="page">
 		<article>
@@ -41,76 +41,7 @@
 								<span><a href="/Pointless/tag/GettingStarted">GettingStarted</a></span>
 							</span>
 		</div>
-		<div class="content"><h2>Requirement</h2>
-
-<ul>
-<li>PHP 5.3+</li>
-<li>Supported Phar extension</li>
-</ul>
-
-<h2>Clone Project &amp; Setup</h2>
-
-<pre><code>git://github.com/scarwu/Pointless.git
-cd Pointless
-./setup.sh
-</code></pre>
-
-<h2>Set Environment</h2>
-
-<pre><code>alias poid="/path/to/Pointless/src/Pointless.php"
-</code></pre>
-
-<h2>Package PHP files</h2>
-
-<pre><code>cd /path/to/Pointless
-./build.php
-</code></pre>
-
-<h2>Project files structure</h2>
-
-<pre><code>.
-├── bin                      - Pointless Phar file
-└── src                      - Pointless source
-    ├── Pointless.php        - Pointless execute shell
-    ├── Boot.php             - Bootstrap loader
-    ├── Command              - All Command's Implement
-    ├── Library              - Pointless default library
-    │   ├── Compress.php
-    │   ├── ExtensionLoader.php
-    │   ├── GeneralFunction.php
-    │   ├── HTMLGenerator.php
-    │   └── Resource.php
-    ├── Plugin               - Git sub modules
-    │   ├── Markdown
-    │   └── NanoCLI
-    └── Sample               - Under this folder's files will copy into user's blog
-        ├── Config.php       - Blog configs
-        ├── Extension        - Blog extension about sitemap, atom, and etc.
-        ├── Markdown         - MD files
-        └── Theme            - Blog themes
-            └── Classic      - Theme name
-                ├── Css      - CSS files
-                ├── Js       - Javascript files
-                ├── Script   - Convert recource and generte HTML files
-                └── Template - HTML template
-</code></pre>
-
-<h2>User blog files structure</h2>
-
-<pre><code>.
-├── Config.php - Blog configs
-├── Deploy     - Git repository, to deploy blog
-├── Extension  - Blog extension about sitemap, atom, and etc.
-├── Markdown   - MD files
-├── Public     - All HTML files
-├── Resource   - Under this folder's files will copy into public folder
-└── Theme      - Blog themes
-</code></pre>
-
-<h2>Last</h2>
-
-<p><a href="https://github.com/scarwu/Pointless/pulls">Pull request</a> and <a href="https://github.com/scarwu/Pointless/issues?state=open">Submit issue</a>.</p>
-</div>
+		<div class="content"></div>
 		<a class="more" href="/Pointless/article/2013/05/24/hacking-and-Development">Read more</a>
 	</article>
 	<hr>
@@ -127,20 +58,7 @@ cd Pointless
 								<span><a href="/Pointless/tag/GettingStarted">GettingStarted</a></span>
 							</span>
 		</div>
-		<div class="content"><h2>Show all commands</h2>
-
-<p>This command will be show all of Pointless' commands.</p>
-
-<pre><code>poi help
-</code></pre>
-
-<h2>Show command detail</h2>
-
-<p>If you want to know command usage detail, you can using this. eg, <code>poi help switch</code>.</p>
-
-<pre><code>poi help &lt;command name&gt;
-</code></pre>
-</div>
+		<div class="content"></div>
 		<a class="more" href="/Pointless/article/2013/05/24/help">Read more</a>
 	</article>
 	<hr>
@@ -157,29 +75,7 @@ cd Pointless
 								<span><a href="/Pointless/tag/GettingStarted">GettingStarted</a></span>
 							</span>
 		</div>
-		<div class="content"><h2>New article</h2>
-
-<p>Add new article to your blog.</p>
-
-<pre><code>poi add
-</code></pre>
-
-<p>This command will be create new article after Q&amp;A. Default using vi to edit article, and you can changing it.</p>
-
-<h2>Edit article</h2>
-
-<pre><code>poi edit
-</code></pre>
-
-<h2>Delete article</h2>
-
-<pre><code>poi delete
-</code></pre>
-
-<h2>Last</h2>
-
-<p>If you want to add(edit/delete) static page that you can adding option <code>-s</code> behind the command. eg, <code>poi add(edit/delete) -s</code>.</p>
-</div>
+		<div class="content"></div>
 		<a class="more" href="/Pointless/article/2013/05/24/post-article">Read more</a>
 	</article>
 	<hr>
@@ -196,25 +92,7 @@ cd Pointless
 								<span><a href="/Pointless/tag/GettingStarted">GettingStarted</a></span>
 							</span>
 		</div>
-		<div class="content"><h2>Switch exists blog</h2>
-
-<p>If you have many blogs, you can using command <code>switch</code> to switch deference blogs.</p>
-
-<pre><code>poi switch &lt;blog name&gt;
-</code></pre>
-
-<h2>Show all blogs</h2>
-
-<pre><code>poi switch -l
-</code></pre>
-
-<h2>Remove blog</h2>
-
-<p>This command will be remove blog record from the Pointless, but it doesn't delete any real files under the path.</p>
-
-<pre><code>poi switch -r &lt;blog name&gt;
-</code></pre>
-</div>
+		<div class="content"></div>
 		<a class="more" href="/Pointless/article/2013/05/24/switch-blogs">Read more</a>
 	</article>
 	<hr>
@@ -231,27 +109,7 @@ cd Pointless
 								<span><a href="/Pointless/tag/GettingStarted">GettingStarted</a></span>
 							</span>
 		</div>
-		<div class="content"><h2>Initialize Blog</h2>
-
-<p>First, you have to initialize your blog folder. This folder will be store all your blog's files.</p>
-
-<pre><code>poi init &lt;blog_name&gt;
-</code></pre>
-
-<h2>Configure</h2>
-
-<p>Second, Configuring your blog information.</p>
-
-<pre><code>poi config
-</code></pre>
-
-<h2>Generate HTML</h2>
-
-<p>Third, generating your blog. This command will be create HTML files.</p>
-
-<pre><code>poi gen
-</code></pre>
-</div>
+		<div class="content"></div>
 		<a class="more" href="/Pointless/article/2013/05/24/first-usage">Read more</a>
 	</article>
 	<hr>
@@ -268,37 +126,7 @@ cd Pointless
 								<span><a href="/Pointless/tag/GettingStarted">GettingStarted</a></span>
 							</span>
 		</div>
-		<div class="content"><h2>Auto install</h2>
-
-<h3>Linux</h3>
-
-<pre><code>sudo curl https://raw.github.com/scarwu/Pointless/master/install.sh | sh
-</code></pre>
-
-<h3>Mac OS &amp; Windows</h3>
-
-<p>Coming Soon...</p>
-
-<h2>Manual install</h2>
-
-<h3>Linux</h3>
-
-<pre><code>wget wget https://raw.github.com/scarwu/Pointless/master/bin/poi
-chmod +x poi
-sudo mv poi /usr/local/bin
-</code></pre>
-
-<h3>Mac OS &amp; Windows</h3>
-
-<p>Coming Soon...</p>
-
-<h2>Update</h2>
-
-<p>Using command <code>update</code> to update <code>Pointless</code> with root(administrator privileges).</p>
-
-<pre><code>sudo poi update
-</code></pre>
-</div>
+		<div class="content"></div>
 		<a class="more" href="/Pointless/article/2013/05/24/install">Read more</a>
 	</article>
 	<hr>
@@ -329,9 +157,6 @@ sudo mv poi /usr/local/bin
 </div></div>
 			<footer>Powerd By Pointless</footer>
 		</div>
-		<a href="https://github.com/scarwu/Pointless" target="_blank">
-			<img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub">
-		</a>
 	</div>
 	<!-- Define and Load Javascript -->
 	<script src="/Pointless/theme/main.js"></script>
