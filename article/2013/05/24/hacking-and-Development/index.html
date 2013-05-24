@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="zh-tw" class="no-js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<meta name="description" content="">
+	<meta name="keywords" content="">
+	<title>Hacking & Development | Pointless</title>
+	
+	<!-- Load Cascading Style Sheets -->
+	<link rel="stylesheet" href="/Pointless/theme/main.css">
+</head>
+<body>
+	<div id="main">
+		<div class="border">
+			<header>
+				<h1><a href="/Pointless/">Pointless</a></h1>
+				<h2>The Static Blog Generator</h2>
+			</header>
+			<div id="nav">
+				<form class="search" action="http://www.google.com/search?q=as" target="_blank" method="get">
+					<input type="hidden" name="q" value="site:scar.simcz.tw" />
+					<input type="text" name="q" placeholder="Search" />
+					<input type="submit" />
+				</form>
+				<a href="/Pointless/">Home</a>
+				<a href="/Pointless/tag/GettingStarted">Getting Started</a>
+			</div>
+			<div id="container"><div id="article">
+	<article>
+		<div class="title">Hacking & Development</div>
+		<div class="info">
+						<span class="date">2013-05-24</span>
+			-
+			<span class="category">
+				Category: <a href="/Pointless/category/Readme">Readme</a>			</span>
+			-
+			<span class="tag">
+				Tag: 
+								<span><a href="/Pointless/tag/GettingStarted">GettingStarted</a></span>
+							</span>
+		</div>
+		<div class="content"><h2>Requirement</h2>
+
+<ul>
+<li>PHP 5.3+</li>
+<li>Supported Phar extension</li>
+</ul>
+
+<h2>Clone Project &amp; Setup</h2>
+
+<pre><code>git://github.com/scarwu/Pointless.git
+cd Pointless
+./setup.sh
+</code></pre>
+
+<h2>Set Environment</h2>
+
+<pre><code>alias poid="/path/to/Pointless/src/Pointless.php"
+</code></pre>
+
+<h2>Package PHP files</h2>
+
+<pre><code>cd /path/to/Pointless
+./build.php
+</code></pre>
+
+<h2>Project files structure</h2>
+
+<pre><code>.
+├── bin                      - Pointless Phar file
+└── src                      - Pointless source
+    ├── Pointless.php        - Pointless execute shell
+    ├── Boot.php             - Bootstrap loader
+    ├── Command              - All Command's Implement
+    ├── Library              - Pointless default library
+    │   ├── Compress.php
+    │   ├── ExtensionLoader.php
+    │   ├── GeneralFunction.php
+    │   ├── HTMLGenerator.php
+    │   └── Resource.php
+    ├── Plugin               - Git sub modules
+    │   ├── Markdown
+    │   └── NanoCLI
+    └── Sample               - Under this folder's files will copy into user's blog
+        ├── Config.php       - Blog configs
+        ├── Extension        - Blog extension about sitemap, atom, and etc.
+        ├── Markdown         - MD files
+        └── Theme            - Blog themes
+            └── Classic      - Theme name
+                ├── Css      - CSS files
+                ├── Js       - Javascript files
+                ├── Script   - Convert recource and generte HTML files
+                └── Template - HTML template
+</code></pre>
+
+<h2>User blog files structure</h2>
+
+<pre><code>.
+├── Config.php - Blog configs
+├── Deploy     - Git repository, to deploy blog
+├── Extension  - Blog extension about sitemap, atom, and etc.
+├── Markdown   - MD files
+├── Public     - All HTML files
+├── Resource   - Under this folder's files will copy into public folder
+└── Theme      - Blog themes
+</code></pre>
+
+<h2>Last</h2>
+
+<p><a href="https://github.com/scarwu/Pointless/pulls">Pull request</a> and <a href="https://github.com/scarwu/Pointless/issues?state=open">Submit issue</a>.</p>
+</div>
+	</article>
+	<hr>
+	<div class="bar">
+		<span class="new">
+					</span>
+		<span class="old">
+			<a href="/Pointless/article/2013/05/24/help">Help >></a>		</span>
+		<span class="count">&lt; 1 / 6 &gt;</span>
+	</div>
+	</div></div>
+			<div id="side"><div class="tag">
+	<div class="title"><a href="/Pointless/tag">Tag</a></div>
+	<div class="content">
+				<span><a href="/Pointless/tag/GettingStarted">GettingStarted(6)</a></span>
+			</div>
+</div><div class="category">
+	<div class="title"><a href="/Pointless/category">Category</a></div>
+	<div class="content">
+				<span><a href="/Pointless/category/Readme">Readme(6)</a></span>
+			</div>
+</div><div class="archive">
+	<div class="title"><a href="/Pointless/archive">Archive</a></div>
+	<div class="content">
+				<span><a href="/Pointless/archive/2013">2013(6)</a></span>
+			</div>
+</div></div>
+			<footer>Powerd By Pointless</footer>
+		</div>
+		<a href="https://github.com/scarwu/Pointless" target="_blank">
+			<img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub">
+		</a>
+	</div>
+	<!-- Define and Load Javascript -->
+	<script src="/Pointless/theme/main.js"></script>
+		<script>
+		var _gaq = [['_setAccount', 'UA-30675094-1'], ['_trackPageview']]; (function(d, t) {
+			var g = d.createElement(t), s = d.getElementsByTagName(t)[0];
+			g.src = ('https:' == location.protocol ? '//ssl' : '//www') + '.google-analytics.com/ga.js';
+			s.parentNode.insertBefore(g, s)
+		} (document, 'script'));
+	</script>
+	</body>
+</html>
