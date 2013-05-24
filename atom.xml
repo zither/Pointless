@@ -1,43 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-	<title>Pointless</title>
+	<title>Pointless Demo</title>
 	<subtitle>The Static Blog Generator</subtitle>
 	<link href="http://scar.simcz.tw/Pointless/atom.xml" rel="self" />
 	<link href="http://scar.simcz.tw/Pointless/" />
-	<id>urn:uuid:ceaf89d5-54b8-e947-cb55-3ec06eb0418d</id>
-	<updated>2013-05-24T16:23:10+08:00</updated>
+	<id>urn:uuid:ff6a68ac-ad32-aefd-78ab-35bc9454c27c</id>
+	<updated>2013-05-24T16:25:50+08:00</updated>
 	<entry>
 		<title>Hacking & Development</title>
 		<link href="http://scar.simcz.tw/Pointless/article/2013/05/24/hacking-and-Development" />
-		<id>urn:uuid:59359a5b-45d5-6b1b-6d37-24b43131c045</id>
+		<id>urn:uuid:eccbaf89-3f78-9ca2-17f5-4351418ce901</id>
 		<updated>2013-05-24T16:01:50+08:00</updated>
 		<summary type="html"></summary>
 	</entry>
 	<entry>
 		<title>Help</title>
 		<link href="http://scar.simcz.tw/Pointless/article/2013/05/24/help" />
-		<id>urn:uuid:5313200c-100d-ac0c-5041-7d5b3add5f82</id>
+		<id>urn:uuid:1f90c087-b26e-c09e-ef19-2c77cb5d09a0</id>
 		<updated>2013-05-24T16:01:05+08:00</updated>
 		<summary type="html"></summary>
 	</entry>
 	<entry>
 		<title>Post Article</title>
 		<link href="http://scar.simcz.tw/Pointless/article/2013/05/24/post-article" />
-		<id>urn:uuid:3707f0bf-fcbb-6c6c-e880-7fae04763b6c</id>
+		<id>urn:uuid:1e0dc15c-af01-f6c2-f161-15240d64500c</id>
 		<updated>2013-05-24T16:00:35+08:00</updated>
 		<summary type="html"></summary>
 	</entry>
 	<entry>
 		<title>Switch Blogs</title>
 		<link href="http://scar.simcz.tw/Pointless/article/2013/05/24/switch-blogs" />
-		<id>urn:uuid:a9aa8a7d-2d8a-73f5-a456-615d6e2fb661</id>
+		<id>urn:uuid:8278d896-9e54-925a-d925-f341a67b602f</id>
 		<updated>2013-05-24T15:59:45+08:00</updated>
 		<summary type="html"></summary>
 	</entry>
 	<entry>
 		<title>First Usage</title>
 		<link href="http://scar.simcz.tw/Pointless/article/2013/05/24/first-usage" />
-		<id>urn:uuid:45f4f754-0fd3-85ca-be02-e4292eb5f663</id>
+		<id>urn:uuid:866dfccc-2b50-a5d8-0842-c7f585400c12</id>
 		<updated>2013-05-24T15:56:39+08:00</updated>
 		<summary type="html"></summary>
 	</entry>
