@@ -1,47 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 	<url>
-		<loc>http://localhost/Pointlesstag/None</loc>
-		<lastmod>2013-05-24T15:17:57+08:00</lastmod>
+		<loc>http://scar.simcz.tw/Pointlesstag/None</loc>
+		<lastmod>2013-05-24T15:21:53+08:00</lastmod>
 	</url>
 	<url>
-		<loc>http://localhost/Pointlesstag</loc>
-		<lastmod>2013-05-24T15:17:57+08:00</lastmod>
+		<loc>http://scar.simcz.tw/Pointlesstag</loc>
+		<lastmod>2013-05-24T15:21:53+08:00</lastmod>
 	</url>
 	<url>
-		<loc>http://localhost/Pointlesscategory/None</loc>
-		<lastmod>2013-05-24T15:17:57+08:00</lastmod>
+		<loc>http://scar.simcz.tw/Pointlesscategory/None</loc>
+		<lastmod>2013-05-24T15:21:53+08:00</lastmod>
 	</url>
 	<url>
-		<loc>http://localhost/Pointlesscategory</loc>
-		<lastmod>2013-05-24T15:17:57+08:00</lastmod>
+		<loc>http://scar.simcz.tw/Pointlesscategory</loc>
+		<lastmod>2013-05-24T15:21:53+08:00</lastmod>
 	</url>
 	<url>
-		<loc>http://localhost/Pointlesspage/1</loc>
-		<lastmod>2013-05-24T15:17:57+08:00</lastmod>
+		<loc>http://scar.simcz.tw/Pointlesspage/1</loc>
+		<lastmod>2013-05-24T15:21:53+08:00</lastmod>
 	</url>
 	<url>
-		<loc>http://localhost/Pointlesspage</loc>
-		<lastmod>2013-05-24T15:17:57+08:00</lastmod>
+		<loc>http://scar.simcz.tw/Pointlesspage</loc>
+		<lastmod>2013-05-24T15:21:53+08:00</lastmod>
 	</url>
 	<url>
-		<loc>http://localhost/Pointlessarchive/1970</loc>
-		<lastmod>2013-05-24T15:17:57+08:00</lastmod>
+		<loc>http://scar.simcz.tw/Pointlessarchive/1970</loc>
+		<lastmod>2013-05-24T15:21:53+08:00</lastmod>
 	</url>
 	<url>
-		<loc>http://localhost/Pointlessarchive</loc>
-		<lastmod>2013-05-24T15:17:57+08:00</lastmod>
+		<loc>http://scar.simcz.tw/Pointlessarchive</loc>
+		<lastmod>2013-05-24T15:21:53+08:00</lastmod>
 	</url>
 	<url>
-		<loc>http://localhost/Pointlessarticle/1970/01/01</loc>
-		<lastmod>2013-05-24T15:17:57+08:00</lastmod>
+		<loc>http://scar.simcz.tw/Pointlessarticle/1970/01/01</loc>
+		<lastmod>2013-05-24T15:21:53+08:00</lastmod>
 	</url>
 	<url>
-		<loc>http://localhost/Pointlessabout</loc>
-		<lastmod>2013-05-24T15:17:57+08:00</lastmod>
+		<loc>http://scar.simcz.tw/Pointlessabout</loc>
+		<lastmod>2013-05-24T15:21:53+08:00</lastmod>
 	</url>
 	<url>
-		<loc>http://localhost/Pointless</loc>
-		<lastmod>2013-05-24T15:17:57+08:00</lastmod>
+		<loc>http://scar.simcz.tw/Pointless</loc>
+		<lastmod>2013-05-24T15:21:53+08:00</lastmod>
 	</url>
 </urlset>
