@@ -4,41 +4,193 @@
 	<subtitle>The Static Blog Generator</subtitle>
 	<link href="http://scar.simcz.tw/Pointless/atom.xml" rel="self" />
 	<link href="http://scar.simcz.tw/Pointless/" />
-	<id>urn:uuid:ff6a68ac-ad32-aefd-78ab-35bc9454c27c</id>
-	<updated>2013-05-24T16:25:50+08:00</updated>
+	<id>urn:uuid:83444857-0d12-a905-6c19-3ab727e79e89</id>
+	<updated>2014-01-11T14:55:29+08:00</updated>
 	<entry>
 		<title>Hacking & Development</title>
-		<link href="http://scar.simcz.tw/Pointless/article/2013/05/24/hacking-and-Development" />
-		<id>urn:uuid:eccbaf89-3f78-9ca2-17f5-4351418ce901</id>
+		<link href="http://scar.simcz.tw/Pointless/article/2013/05/24/hacking-and-development" />
+		<id>urn:uuid:912918bb-0400-93de-1e32-1b609077d38d</id>
 		<updated>2013-05-24T16:01:50+08:00</updated>
-		<summary type="html"></summary>
+		<summary type="html">&lt;!--more--&gt;
+
+&lt;h2&gt;Requirement&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;PHP 5.3+&lt;/li&gt;
+&lt;li&gt;Supported Phar extension&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2&gt;Clone Project &amp;amp; Setup&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;git://github.com/scarwu/Pointless.git
+cd Pointless
+./setup.sh
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2&gt;Set Environment&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;alias poid=&quot;/path/to/Pointless/src/Pointless.php&quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2&gt;Package PHP files&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;cd /path/to/Pointless
+./build.php
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2&gt;Project files structure&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;.
+├── bin                      - Pointless Phar file
+└── src                      - Pointless source
+    ├── Pointless.php        - Pointless execute shell
+    ├── Boot.php             - Bootstrap loader
+    ├── Command              - All Command&#039;s Implement
+    ├── Library              - Pointless default library
+    │   ├── Compress.php
+    │   ├── ExtensionLoader.php
+    │   ├── GeneralFunction.php
+    │   ├── HTMLGenerator.php
+    │   └── Resource.php
+    ├── Plugin               - Git sub modules
+    │   ├── Markdown
+    │   └── NanoCLI
+    └── Sample               - Under this folder&#039;s files will copy into user&#039;s blog
+        ├── Config.php       - Blog configs
+        ├── Extension        - Blog extension about sitemap, atom, and etc.
+        ├── Markdown         - MD files
+        └── Theme            - Blog themes
+            └── Classic      - Theme name
+                ├── Css      - CSS files
+                ├── Js       - Javascript files
+                ├── Script   - Convert recource and generte HTML files
+                └── Template - HTML template
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2&gt;User blog files structure&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;.
+├── Config.php - Blog configs
+├── Deploy     - Git repository, to deploy blog
+├── Extension  - Blog extension about sitemap, atom, and etc.
+├── Markdown   - MD files
+├── Public     - All HTML files
+├── Resource   - Under this folder&#039;s files will copy into public folder
+└── Theme      - Blog themes
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2&gt;Last&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://github.com/scarwu/Pointless/pulls&quot;&gt;Pull request&lt;/a&gt; and &lt;a href=&quot;https://github.com/scarwu/Pointless/issues?state=open&quot;&gt;Submit issue&lt;/a&gt;.&lt;/p&gt;
+</summary>
 	</entry>
 	<entry>
 		<title>Help</title>
 		<link href="http://scar.simcz.tw/Pointless/article/2013/05/24/help" />
-		<id>urn:uuid:1f90c087-b26e-c09e-ef19-2c77cb5d09a0</id>
+		<id>urn:uuid:581da219-9210-61b3-c7c3-95c5399bf8d8</id>
 		<updated>2013-05-24T16:01:05+08:00</updated>
-		<summary type="html"></summary>
+		<summary type="html">&lt;!--more--&gt;
+
+&lt;h2&gt;Show all commands&lt;/h2&gt;
+
+&lt;p&gt;This command will be show all of Pointless&#039; commands.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;poi help
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2&gt;Show command detail&lt;/h2&gt;
+
+&lt;p&gt;If you want to know command usage detail, you can using this. eg, &lt;code&gt;poi help switch&lt;/code&gt;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;poi help &amp;lt;command name&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+</summary>
 	</entry>
 	<entry>
 		<title>Post Article</title>
 		<link href="http://scar.simcz.tw/Pointless/article/2013/05/24/post-article" />
-		<id>urn:uuid:1e0dc15c-af01-f6c2-f161-15240d64500c</id>
+		<id>urn:uuid:e56ecd6a-8995-504f-5399-14b28ecbe775</id>
 		<updated>2013-05-24T16:00:35+08:00</updated>
-		<summary type="html"></summary>
+		<summary type="html">&lt;!--more--&gt;
+
+&lt;h2&gt;New article&lt;/h2&gt;
+
+&lt;p&gt;Add new article to your blog.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;poi add
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This command will be create new article after Q&amp;amp;A. Default using vi to edit article, and you can changing it.&lt;/p&gt;
+
+&lt;h2&gt;Edit article&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;poi edit
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2&gt;Delete article&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;poi delete
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2&gt;Last&lt;/h2&gt;
+
+&lt;p&gt;If you want to add(edit/delete) static page that you can adding option &lt;code&gt;-s&lt;/code&gt; behind the command. eg, &lt;code&gt;poi add(edit/delete) -s&lt;/code&gt;.&lt;/p&gt;
+</summary>
 	</entry>
 	<entry>
 		<title>Switch Blogs</title>
 		<link href="http://scar.simcz.tw/Pointless/article/2013/05/24/switch-blogs" />
-		<id>urn:uuid:8278d896-9e54-925a-d925-f341a67b602f</id>
+		<id>urn:uuid:d3c0bc1a-74fe-4c98-3531-3ec253dfe919</id>
 		<updated>2013-05-24T15:59:45+08:00</updated>
-		<summary type="html"></summary>
+		<summary type="html">&lt;!--more--&gt;
+
+&lt;h2&gt;Switch exists blog&lt;/h2&gt;
+
+&lt;p&gt;If you have many blogs, you can using command &lt;code&gt;switch&lt;/code&gt; to switch deference blogs.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;poi switch &amp;lt;blog name&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2&gt;Show all blogs&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;poi switch -l
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2&gt;Remove blog&lt;/h2&gt;
+
+&lt;p&gt;This command will be remove blog record from the Pointless, but it doesn&#039;t delete any real files under the path.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;poi switch -r &amp;lt;blog name&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+</summary>
 	</entry>
 	<entry>
 		<title>First Usage</title>
 		<link href="http://scar.simcz.tw/Pointless/article/2013/05/24/first-usage" />
-		<id>urn:uuid:866dfccc-2b50-a5d8-0842-c7f585400c12</id>
+		<id>urn:uuid:48087d86-a693-abc7-e57b-ffdaa6434ac6</id>
 		<updated>2013-05-24T15:56:39+08:00</updated>
-		<summary type="html"></summary>
+		<summary type="html">&lt;!--more--&gt;
+
+&lt;h2&gt;Initialize Blog&lt;/h2&gt;
+
+&lt;p&gt;First, you have to initialize your blog folder. This folder will be store all your blog&#039;s files.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;poi init &amp;lt;blog_name&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2&gt;Configure&lt;/h2&gt;
+
+&lt;p&gt;Second, Configuring your blog information.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;poi config
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2&gt;Generate HTML&lt;/h2&gt;
+
+&lt;p&gt;Third, generating your blog. This command will be create HTML files.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;poi gen
+&lt;/code&gt;&lt;/pre&gt;
+</summary>
 	</entry>
 </feed>
