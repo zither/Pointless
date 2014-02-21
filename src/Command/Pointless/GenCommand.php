@@ -16,7 +16,6 @@ use Resource;
 use Compress;
 use HTMLGenerator;
 use ExtensionLoader;
-use Michelf\MarkdownExtra;
 
 class GenCommand extends Command {
     public function __construct() {
@@ -140,7 +139,7 @@ class GenCommand extends Command {
         $article = [];
         $article_url = Resource::get('config')['article_url'];
         $article_url = trim($article_url, '/');
-        $parsedown = new Parsedown();
+        $parsedown = new \Parsedown();
 
         // Handle Markdown
         IO::writeln('Load and Initialize Markdown');
