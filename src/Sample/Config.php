@@ -44,7 +44,7 @@ $config = [
 
     // Reference: http://php.net/manual/en/function.iconv.php
     // Big5 | GBK | other => UTF-8
-    'encoding' => 'UTF-8',
+    'encoding' => 'utf-8',
 
     'editor' => 'vim'
 ];
