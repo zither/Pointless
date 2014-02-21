@@ -44,7 +44,7 @@ class UpdateCommand extends Command {
             $branch = 'koding';
         }
 
-        $remote = "https://raw.github.com/scarwu/Pointless/$branch/bin/poi";
+        $remote = "https://raw.github.com/zither/Pointless/$branch/bin/poi";
         $path = defined('BIN_LOCATE') ? BIN_LOCATE : '/usr/local/bin';
 
         if(!is_dir($path)) {
