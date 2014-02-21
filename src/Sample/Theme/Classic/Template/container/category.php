@@ -27,7 +27,6 @@
 				<?php endforeach; ?>
 			</div>
 		</div>
-		<hr>
 		<?php endforeach; ?>
 	</div>
 	<?php endforeach; ?>

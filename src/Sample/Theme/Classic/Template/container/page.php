@@ -5,12 +5,6 @@
 			<?=linkTo("{$blog['base']}article/{$article['url']}", $article['title'])?>
 		</div>
 		<div class="info">
-			<?php if(NULL != $blog['disqus_shortname']): ?>
-			<span class="comments">
-				<a href="<?=linkEncode("{$blog['base']}article/{$article['url']}/")?>#disqus_thread">0 Comment</a>
-			</span>
-			<br />
-			<?php endif; ?>
 			<span class="date"><?=$article['date']?></span>
 			-
 			<span class="category">
@@ -24,6 +18,12 @@
 				<?php endforeach; ?>
 				<?=join($article['tag'], ', ')?>
 			</span>
+			<?php if(NULL != $blog['disqus_shortname']): ?>
+            -
+			<span class="comments">
+				<a href="<?=linkEncode("{$blog['base']}article/{$article['url']}/")?>#disqus_thread">0 Comment</a>
+			</span>
+			<?php endif; ?>
 		</div>
 		<div class="content">
 			<?=preg_replace('/<!--more-->(.|\n)*/', '', $article['content'])?>
@@ -32,7 +32,6 @@
 			Read more
 		</a>
 	</article>
-	<hr>
 	<?php endforeach; ?>
 	<div class="bar">
 		<span class="new">

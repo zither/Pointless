@@ -5,7 +5,6 @@
 		<div class="content"><?=$post['content']?></div>
 	</article>
 	<?php if(NULL != $blog['disqus_shortname'] && $post['message']): ?>
-	<hr>
 	<div id="disqus_thread"></div>
 	<script type="text/javascript">
 		var disqus_shortname = '<?=$blog['disqus_shortname']?>';

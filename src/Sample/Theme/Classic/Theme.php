@@ -9,7 +9,7 @@ $theme = [
         'normalize.css',
         'main.css',
         'index.css',
-        'solarized_dark.css'
+        'solarize_dark.css'
     ],
     'template' => [
         'side' => [

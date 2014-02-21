@@ -2,14 +2,6 @@
 	<article>
 		<div class="title"><?=$post['title']?></div>
 		<div class="info">
-			<?php if(NULL != $blog['disqus_shortname']): ?>
-			<span class="comment">
-				<a href="<?=linkEncode("{$blog['base']}{$post['url']}/")?>#disqus_thread">
-					0 Comment
-				</a>
-			</span>
-			<br />
-			<?php endif; ?>
 			<span class="date"><?=$post['date']?></span>
 			-
 			<span class="category">
@@ -24,12 +16,19 @@
 				<?php endforeach; ?>
 				<?=join($post['tag'], ', ')?>
 			</span>
+			<?php if(NULL != $blog['disqus_shortname']): ?>
+            -
+			<span class="comment">
+				<a href="<?=linkEncode("{$blog['base']}{$post['url']}/")?>#disqus_thread">
+					0 Comment
+				</a>
+			</span>
+			<?php endif; ?>
 		</div>
 		<div class="content">
 			<?=$post['content']?>
 		</div>
 	</article>
-	<hr>
 	<div class="bar">
 		<span class="new">
 			<?=isset($post['bar']['p_url'])

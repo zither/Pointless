@@ -10,7 +10,7 @@ html, body {
 
 body {
 	font-family: '微軟正黑體', '儷黑Pro', 'Ubuntu', Arial;
-	background: #DFDFDF;
+	background: #fff;
 	font-size: 14px;
 }
 
@@ -41,18 +41,16 @@ a:hover {
 #main .border {
 	background: #FFF;
 	margin: 30px 20px 50px 20px;
-	-moz-box-shadow: 0 0 10px #999;
-	-webkit-box-shadow: 0 0 10px #999;
-	box-shadow: 0 0 10px #999;
 }
 
 header {
-	height: 110px;
+	height: 90px;
 	margin: auto;
-	padding: 45px 0 0 50px;
+	padding: 45px 0 0 0;
 }
 
 header > h1 {
+    text-align:center;
 	margin: 0;
 	padding: 0;
 	vertical-align: bottom;
@@ -67,6 +65,7 @@ header > h1 > a:hover {
 }
 
 header > h2 {
+    text-align:center;
 	font-size: 16px;
 	color: #999;
 	font-weight: normal;
@@ -74,8 +73,9 @@ header > h2 {
 }
 
 #nav {
-	border-top: solid 1px #DFDFDF;
-	background: #000;
+    text-align:center;
+	border-top: solid 0px #DFDFDF;
+	background: #fff;
 	padding: 0 75px;
 }
 
@@ -86,17 +86,13 @@ header > h2 {
 	display: inline-block;
 	height: 45px;
 	line-height: 45px;
-	color: #DDD;
+	color: #000;
 }
 
 #nav > a:focus,
 #nav > a:hover,
 #nav > a:active {
-	background: #EEE;
 	color: #222;
-	-moz-box-shadow: 0 0 10px #999;
-	-webkit-box-shadow: 0 0 10px #999;
-	box-shadow: 0 0 10px #999;
 }
 
 #nav > .search {
@@ -128,8 +124,8 @@ header > h2 {
 
 #container > div > .title,
 #container > div > article > .title {
-	font-size: 28px;
-	font-weight: bold;
+	font-size: 24px;
+	font-weight: 500;
 	margin-bottom: 15px;
 }
 
@@ -186,7 +182,6 @@ header > h2 {
 
 footer {
 	border-top: solid 1px #DFDFDF;
-	background: #EFEFEF;
 	text-align: center;
 	height: 50px;
 	line-height: 50px;
@@ -196,6 +191,7 @@ footer {
 
 article pre {
 	border: 1px #000 solid;
+    margin: 0 2em;
 	padding: 10px 25px 10px 55px;
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
@@ -212,8 +208,15 @@ article img {
 	border-radius: 3px;
 }
 
-#article article
-#page article, {
+article .info , article .info a{
+    color:#999;
+}
+
+article .info a{
+    text-decoration:underline;
+}
+
+#article article, #page article {
 	margin-bottom: 50px;
 }
 
@@ -221,18 +224,22 @@ article img {
 	margin-bottom: 25px;
 }
 
+.content p {
+    text-indent:2em;
+}
+
+.content a {
+    text-decoration:underline;
+}
+
 #page article .more {
-	display: inline-block;
-	border: 1px #DDD solid;
-	background: #EEE;
+    text-align:center;
 	padding: 5px 20px;
-	text-align: center;
+    background-color:#eee;
 	text-decoration: none;
 }
 
 #page article .more:hover {
-	color: #EEE;
-	background: #333333;
 }
 
 #tag .year,
