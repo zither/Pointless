@@ -26,7 +26,7 @@
 			<?php endif; ?>
 		</div>
 		<div class="content">
-			<?=$post['content']?>
+			<?=preg_replace('/&lt;!--more-->/', '', $post['content'])?>
 		</div>
 	</article>
 	<div class="bar">

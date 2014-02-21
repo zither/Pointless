@@ -26,7 +26,7 @@
 			<?php endif; ?>
 		</div>
 		<div class="content">
-			<?=preg_replace('/<!--more-->(.|\n)*/', '', $article['content'])?>
+			<?=preg_replace('/&lt;!--more-->(.|\n)*/', '', $article['content'])?>
 		</div>
 		<a class="more" href="<?="{$blog['base']}article/{$article['url']}"?>">
 			Read more
