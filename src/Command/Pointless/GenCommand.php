@@ -104,7 +104,7 @@ class GenCommand extends Command {
         // Synchronize the raw md files
         if (Resource::get('config')['synchronize_raw_md']) {
             IO::writeln('Synchronize the raw md Files ...', 'yellow');
-            recursiveCopy(MARKDOWN, TEMP);
+            recursiveCopy(MARKDOWN, TEMP . '/Markdown');
         }
         
         // Compress CSS and JavaScript
