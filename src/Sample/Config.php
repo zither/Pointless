@@ -1,22 +1,22 @@
 <?php
 $config = [
     'blog' => [
-        'name' => 'Pointless',
-        'slogan' => 'A Useful Static Blog Generator',
-        'footer' => 'Powerd By Pointless',
-        'description' => '',
-        'keywords' => '',
+        'name' => 'MiniThinker',
+        'slogan' => '努力学习那些想要知道的东西',
+        'footer' => 'Powerd By <a href="https://github.com/scarwu/Pointless">Pointless</a>',
+        'description' => '记录在生活以及自学编程过程中好玩的东西。',
+        'keywords' => 'MiniThinker, Programming, Computer, PHP, Scheme',
         
-        'lang' => 'en', // en | zh-tw | zh-cn | other
+        'lang' => 'zh-cn', // en | zh-tw | zh-cn | other
 
-        'dn' => 'localhost',
+        'dn' => 'blog.minimee.org',
         'base' => '/',
 
-        'author' => null,
-        'email' => null,
+        'author' => 'Minimee',
+        'email' => NULL,
         
-        'disqus_shortname' => null, // Disqus Shortname
-        'google_analytics' => null, // Google Analytics - UA-xxxxxxxx-x
+        'disqus_shortname' => NULL, // Disqus Shortname
+        'google_analytics' => NULL, // Google Analytics - UA-xxxxxxxx-x
     ],
 
     'theme' => 'Classic',
@@ -30,21 +30,21 @@ $config = [
     'article_url' => ':year/:month/:day/:url',
 
     // Reference: http://php.net/manual/en/timezones.php
-    'timezone' => 'Etc/UTC',
+    'timezone' => 'Asia/Shanghai',
 
     'github' => [
-        'account' => null,
-        'repo' => null,
-        'branch' => null,
-        'cname' => false
+        'account' => 'zither',
+        'repo' => 'zither.github.com',
+        'branch' => 'master',
+        'cname' => true
     ],
 
     // synchronize raw files
-    'synchronize_raw_md' => false,
+    'synchronize_raw_md' => true,
 
     // Reference: http://php.net/manual/en/function.iconv.php
     // Big5 | GBK | other => UTF-8
-    'encoding' => null,
+    'encoding' => 'UTF-8',
 
     'editor' => 'vim'
 ];

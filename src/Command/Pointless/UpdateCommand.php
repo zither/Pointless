@@ -22,6 +22,7 @@ class UpdateCommand extends Command {
         IO::writeln('    update     - Self-update');
         IO::writeln('    update -d  - Use development version');
         IO::writeln('    update -e  - Use experipment version');
+        IO::writeln('    update -k  - Use koding version');
     }
     
     public function run() {
