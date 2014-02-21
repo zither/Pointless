@@ -40,6 +40,10 @@ class UpdateCommand extends Command {
             $branch = 'experipment';
         }
 
+        if ($this->hasOptions('k')) {
+            $branch = 'koding';
+        }
+
         $remote = "https://raw.github.com/scarwu/Pointless/$branch/bin/poi";
         $path = defined('BIN_LOCATE') ? BIN_LOCATE : '/usr/local/bin';
 

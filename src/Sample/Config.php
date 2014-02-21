@@ -12,14 +12,14 @@ $config = [
         'dn' => 'localhost',
         'base' => '/',
 
-        'author' => NULL,
-        'email' => NULL,
+        'author' => null,
+        'email' => null,
         
-        'disqus_shortname' => NULL, // Disqus Shortname
-        'google_analytics' => NULL, // Google Analytics - UA-xxxxxxxx-x
+        'disqus_shortname' => null, // Disqus Shortname
+        'google_analytics' => null, // Google Analytics - UA-xxxxxxxx-x
     ],
 
-    'theme' => 'Classis',
+    'theme' => 'Classic',
 
     'feed_quantity' => 5,
     'article_quantity' => 5,
@@ -33,15 +33,18 @@ $config = [
     'timezone' => 'Etc/UTC',
 
     'github' => [
-        'account' => NULL,
-        'repo' => NULL,
-        'branch' => NULL,
-        'cname' => FALSE
+        'account' => null,
+        'repo' => null,
+        'branch' => null,
+        'cname' => false
     ],
+
+    // synchronize raw files
+    'synchronize_raw_md' => false,
 
     // Reference: http://php.net/manual/en/function.iconv.php
     // Big5 | GBK | other => UTF-8
-    'encoding' => NULL,
+    'encoding' => null,
 
-    'editor' => 'vi'
+    'editor' => 'vim'
 ];

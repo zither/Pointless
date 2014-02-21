@@ -3,4 +3,4 @@
 	url = git://github.com/scarwu/NanoCLI.git
 [submodule "src/Vendor/Markdown"]
 	path = src/Vendor/Markdown
-	url = git://github.com/michelf/php-markdown.git
+	url = git://github.com/erusev/parsedown.git

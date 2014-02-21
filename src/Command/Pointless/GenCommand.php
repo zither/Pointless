@@ -34,7 +34,7 @@ class GenCommand extends Command {
         require LIBRARY . '/Compress.php';
         require LIBRARY . '/HTMLGenerator.php';
         require LIBRARY . '/ExtensionLoader.php';
-        require VENDOR . '/Markdown/Michelf/MarkdownExtra.inc.php';
+        require VENDOR . '/Markdown/Parsedown.php';
 
         // Load Theme Config
         require THEME . '/Theme.php';
@@ -102,6 +102,12 @@ class GenCommand extends Command {
             recursiveCopy(THEME . '/Resource', TEMP . '/theme');
         }
         
+        // Synchronize the raw md files
+        if (Resource::get('config')['synchronize_raw_md']) {
+            IO::writeln('Synchronize the raw md Files ...', 'yellow');
+            rescursiveCopy(MARKDOWN, TEMP);
+        }
+        
         // Compress CSS and JavaScript
         IO::writeln('Compress CSS & Javascript ...', 'yellow');
         $compress = new Compress();
@@ -134,6 +140,7 @@ class GenCommand extends Command {
         $article = [];
         $article_url = Resource::get('config')['article_url'];
         $article_url = trim($article_url, '/');
+        $parsedown = new Parsedown();
 
         // Handle Markdown
         IO::writeln('Load and Initialize Markdown');
@@ -155,7 +162,7 @@ class GenCommand extends Command {
                 Resource::append('static', [
                     'title' => $post['title'],
                     'url' => $post['url'],
-                    'content' => MarkdownExtra::defaultTransform($match[2]),
+                    'content' => $parsedown->parse($match[2]),
                     'message' => isset($post['message']) ? $post['message'] : TRUE
                 ]);
             }
@@ -183,7 +190,7 @@ class GenCommand extends Command {
                 $article[$timestamp] = [
                     'title' => $post['title'],
                     'url' => $url,
-                    'content' => MarkdownExtra::defaultTransform($match[2]),
+                    'content' => $parsedown->parse($match[2]),
                     'date' => $post['date'],
                     'time' => $post['time'],
                     'category' => $post['category'],
