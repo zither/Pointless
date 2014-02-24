@@ -6,10 +6,10 @@ $theme = [
         'custom.js'
     ],
     'css' => [
+        'obsidian.css',
         'normalize.css',
         'main.css',
         'index.css',
-        'solarize_dark.css'
     ],
     'template' => [
         'side' => [
