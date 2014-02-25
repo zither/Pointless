@@ -186,7 +186,7 @@ footer {
 	font-size: 12px;
 	color: #666;
 }
-article pre {
+pre {
     display:block;
     padding:0.5em;
     background-color:#282B2E;
@@ -301,12 +301,14 @@ article .info a{
 	#side > div {
 		width: 100%;
 	}
+    pre {margin:0}
 }
 
 @media (min-width: 481px) and (max-width: 600px) {
 	#side > div {
 		width: 50%;
 	}
+    pre {margin:0}
 }
 
 @media (max-width: 600px) {
