@@ -1,106 +1,116 @@
 <?php
 /**
  * General Function
- * 
- * @package		Pointless
- * @author		ScarWu
- * @copyright	Copyright (c) 2012-2014, ScarWu (http://scar.simcz.tw/)
- * @link		http://github.com/scarwu/Pointless
+ *
+ * @package     Pointless
+ * @author      ScarWu
+ * @copyright   Copyright (c) 2012-2014, ScarWu (http://scar.simcz.tw/)
+ * @link        http://github.com/scarwu/Pointless
  */
 
-// Define Regular Expression Rule
-define('REGEX_RULE', '/^({(?:.|\n)*?})\n((?:.|\n)*)/');
+use NanoCLI\IO;
 
 /**
- * Define Path and Initialize Blog
+ * Check Default Blog
  */
-function initBlog($current_blog = NULL) {
-	if(NULL !== $current_blog)
-		define('USER_DATA', $current_blog . '/');
-	elseif(defined('CURRENT_BLOG'))
-		define('USER_DATA', CURRENT_BLOG . '/');
-	else
-		return;
+function checkDefaultBlog()
+{
+    $msg = 'Default blog is\'t set. Please use command "home -s" or "home -i".';
 
-	if(!file_exists(USER_DATA))
-		mkdir(USER_DATA, 0755, TRUE);
+    if (!file_exists(HOME . '/Default')) {
+        IO::writeln($msg, 'red');
 
-	if(!file_exists(USER_DATA . 'Config.php'))
-		copy(ROOT . 'Sample/Config.php', USER_DATA . 'Config.php');
+        return false;
+    }
 
-	// Require Config
-	require USER_DATA . 'Config.php';
+    $path = file_get_contents(HOME . '/Default');
 
-	/**
-	 * Markdown
-	 */
-	define('MARKDOWN_FOLDER', USER_DATA . 'Markdown/');
+    if ('' === $path) {
+        IO::writeln($msg, 'red');
 
-	if(!file_exists(MARKDOWN_FOLDER)) {
-		mkdir(MARKDOWN_FOLDER, 0755, TRUE);
-		recursiveCopy(ROOT . 'Sample/Markdown', MARKDOWN_FOLDER);
-	}
+        return false;
+    }
 
-	/**
-	 * Theme
-	 */
-	define('THEME_FOLDER', USER_DATA . 'Theme/');
+    if (!file_exists($path) || !file_exists("$path/.pointless")) {
+        file_put_contents(HOME . '/defualt', '');
 
-	if(!file_exists(THEME_FOLDER)) {
-		mkdir(THEME_FOLDER, 0755, TRUE);
-		recursiveCopy(ROOT . 'Sample/Theme', THEME_FOLDER);
-	}
+        IO::writeln($msg, 'red');
 
-	// Test Theme Path
-	if(file_exists(THEME_FOLDER . BLOG_THEME) && '' != BLOG_THEME)
-		define('THEME_PATH', THEME_FOLDER . BLOG_THEME. '/');
-	elseif(file_exists(ROOT . 'Sample/Theme/' . BLOG_THEME) && '' != BLOG_THEME)
-		define('THEME_PATH', ROOT . 'Sample/Theme/' . BLOG_THEME. '/');
-	else
-		define('THEME_PATH', ROOT . 'Sample/Theme/Classic/');
+        return false;
+    }
 
-	define('THEME_JS', THEME_PATH . 'Js/');
-	define('THEME_CSS', THEME_PATH . 'Css/');
-	define('THEME_SCRIPT', THEME_PATH . 'Script/');
-	define('THEME_RESOURCE', THEME_PATH . 'Resource/');
-	define('THEME_TEMPLATE', THEME_PATH . 'Template/');
+    define('BLOG', $path);
 
-	/**
-	 * Extension
-	 */
-	define('EXTENSION_FOLDER', USER_DATA . 'Extension/');
+    return true;
+}
 
-	if(!file_exists(EXTENSION_FOLDER)) {
-		mkdir(EXTENSION_FOLDER, 0755, TRUE);
-		recursiveCopy(ROOT . 'Sample/Extension', EXTENSION_FOLDER);
-	}
+/**
+ * Initialize Blog
+ */
+function initBlog()
+{
+    if (!file_exists(BLOG . '/.pointless')) {
+        file_put_contents(BLOG . '/.pointless', '');
+    }
 
-	/**
-	 * Public
-	 */
-	define('PUBLIC_FOLDER', USER_DATA . 'Public/');
+    if (!file_exists(BLOG . '/Config.php')) {
+        copy(ROOT . '/Sample/Config.php', BLOG . '/Config.php');
+    }
 
-	if(!file_exists(PUBLIC_FOLDER))
-		mkdir(PUBLIC_FOLDER, 0755, TRUE);
+    // Require Config
+    require BLOG . '/Config.php';
+    Resource::set('config', $config);
 
-	/**
-	 * Deploy
-	 */
-	define('DEPLOY_FOLDER', USER_DATA . 'Deploy/');
+    // Define Path
+    define('TEMP', BLOG . '/Temp');
+    define('DEPLOY', BLOG . '/Deploy');
+    define('RESOURCE', BLOG . '/Resource');
+    define('EXTENSION', BLOG . '/Extension');
+    define('MARKDOWN', BLOG . '/Markdown');
 
-	if(!file_exists(DEPLOY_FOLDER))
-		mkdir(DEPLOY_FOLDER, 0755, TRUE);
+    if (!file_exists(TEMP)) {
+        mkdir(TEMP, 0755);
+    }
 
-	/**
-	 * Resource
-	 */
-	define('RESOURCE_FOLDER', USER_DATA . 'Resource/');
+    if (!file_exists(DEPLOY)) {
+        mkdir(DEPLOY, 0755);
+    }
 
-	if(!file_exists(RESOURCE_FOLDER))
-		mkdir(RESOURCE_FOLDER, 0755, TRUE);
+    if (!file_exists(RESOURCE)) {
+        mkdir(RESOURCE, 0755);
+    }
 
-	// Set Time Zone
-	date_default_timezone_set(TIMEZONE);
+    if (!file_exists(EXTENSION)) {
+        mkdir(EXTENSION, 0755);
+    }
+
+    if (!file_exists(MARKDOWN)) {
+        recursiveCopy(ROOT . '/Sample/Markdown', MARKDOWN);
+    }
+
+    if (!file_exists(BLOG . '/Theme')) {
+        recursiveCopy(ROOT . '/Sample/Theme', BLOG . '/Theme');
+    }
+
+    if ('' === $config['theme']) {
+        $config['theme'] = 'Classic';
+    }
+
+    if (file_exists(BLOG . "/Theme/{$config['theme']}")) {
+        define('THEME', BLOG . "/Theme/{$config['theme']}");
+    } else {
+        define('THEME', ROOT . '/Sample/Theme/Classic');
+    }
+
+    // Set Timezone
+    date_default_timezone_set($config['timezone']);
+
+    // Change Owner
+    if (isset($_SERVER['SUDO_USER'])) {
+        $user = fileowner(HOME);
+        $group = filegroup(HOME);
+        system("chown $user.$group -R " . BLOG);
+    }
 }
 
 /**
@@ -110,13 +120,18 @@ function initBlog($current_blog = NULL) {
  * @param string
  * @return string
  */
-function bindData($data, $path) {
-	ob_start();
-	include $path;
-	$result = ob_get_contents();
-	ob_end_clean();
-	
-	return $result;
+function bindData($_data, $_path)
+{
+    foreach ($_data as $_key => $_value) {
+        $$_key = $_value;
+    }
+
+    ob_start();
+    include $_path;
+    $_result = ob_get_contents();
+    ob_end_clean();
+
+    return $_result;
 }
 
 /**
@@ -125,23 +140,27 @@ function bindData($data, $path) {
  * @param string
  * @param string
  */
-function writeTo($data, $path) {
-	if(!preg_match('/\.(html|xml)$/', $path)) {
-		if(!file_exists($path))
-			mkdir($path, 0755, TRUE);
-		$path = $path . '/index.html';
-	}
-	else {
-		$segments = explode('/', $path);
-		array_pop($segments);
-		$dirpath = implode($segments, '/');
-		if(!file_exists($dirpath))
-			mkdir($dirpath, 0755, TRUE);
-	}
+function writeTo($data, $path)
+{
+    if (!preg_match('/\.(html|xml)$/', $path)) {
+        if (!file_exists($path)) {
+            mkdir($path, 0755, true);
+        }
 
-	$handle = fopen($path, 'w+');
-	fwrite($handle, $data);
-	fclose($handle);
+        $path = "$path/index.html";
+    } else {
+        $segments = explode('/', $path);
+        array_pop($segments);
+
+        $dirpath = implode($segments, '/');
+        if (!file_exists($dirpath)) {
+            mkdir($dirpath, 0755, true);
+        }
+    }
+
+    $handle = fopen($path, 'w+');
+    fwrite($handle, $data);
+    fclose($handle);
 }
 
 /**
@@ -150,20 +169,25 @@ function writeTo($data, $path) {
  * @param string
  * @param string
  */
-function recursiveCopy($src, $dest) {
-	if(file_exists($src)) {
-		if(is_dir($src)) {
-			if(!file_exists($dest))
-				mkdir($dest, 0755, TRUE);
-			$handle = @opendir($src);
-			while($file = readdir($handle))
-				if($file != '.' && $file != '..' && $file != '.git')
-					recursiveCopy($src . '/' . $file, $dest . '/' . $file);
-			closedir($handle);
-		}
-		else
-			copy($src, $dest);
-	}
+function recursiveCopy($src, $dest)
+{
+    if (file_exists($src)) {
+        if (is_dir($src)) {
+            if (!file_exists($dest)) {
+                mkdir($dest, 0755, true);
+            }
+
+            $handle = opendir($src);
+            while ($file = readdir($handle)) {
+                if (!in_array($file, ['.', '..', '.git'])) {
+                    recursiveCopy("$src/$file", "$dest/$file");
+                }
+            }
+            closedir($handle);
+        } else {
+            copy($src, $dest);
+        }
+    }
 }
 
 /**
@@ -173,59 +197,23 @@ function recursiveCopy($src, $dest) {
  * @param string
  * @return boolean
  */
-function recursiveRemove($path = NULL) {
-	if(file_exists($path)) {
-		if(is_dir($path)) {
-			$handle = opendir($path);
-			while($file = readdir($handle))
-				if($file != '.' && $file != '..' && $file != '.git')
-					recursiveRemove($path . '/' . $file);
-			closedir($handle);
-			
-			if(defined('CURRENT_BLOG'))
-				if($path != PUBLIC_FOLDER && $path != DEPLOY_FOLDER)
-					return rmdir($path);
-		}
-		else
-			return unlink($path);
-	}
-}
+function recursiveRemove($path = null, $self = null)
+{
+    if (file_exists($path)) {
+        if (is_dir($path)) {
+            $handle = opendir($path);
+            while ($file = readdir($handle)) {
+                if (!in_array($file, ['.', '..', '.git'])) {
+                    recursiveRemove("$path/$file");
+                }
+            }
+            closedir($handle);
 
-/**
- * Sort Using Article's Count
- *
- * @param array
- * @return array
- */
-function countSort($list) {
-	uasort($list, function($a, $b) {
-		if (count($a) == count($b))
-			return 0;
-
-		return count($a)  > count($b) ? -1 : 1;
-	});
-	
-	return $list;
-}
-
-/**
- * Create Date List Using Article
- *
- * @param array
- * @return array
- */
-function createDateList($list) {
-	$result = array();
-
-	foreach((array)$list as $article) {
-		if(!isset($result[$article['year']]))
-			$result[$article['year']] = array();
-		
-		if(!isset($result[$article['year']][$article['month']]))
-			$result[$article['year']][$article['month']] = array();
-		
-		$result[$article['year']][$article['month']][] = $article;
-	}
-
-	return $result;
+            if ($path !== $self) {
+                return rmdir($path);
+            }
+        } else {
+            return unlink($path);
+        }
+    }
 }

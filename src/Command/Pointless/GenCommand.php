@@ -1,213 +1,227 @@
 <?php
 /**
  * Pointless Gen Command
- * 
- * @package		Pointless
- * @author		ScarWu
- * @copyright	Copyright (c) 2012-2014, ScarWu (http://scar.simcz.tw/)
- * @link		http://github.com/scarwu/Pointless
+ *
+ * @package     Pointless
+ * @author      ScarWu
+ * @copyright   Copyright (c) 2012-2014, ScarWu (http://scar.simcz.tw/)
+ * @link        http://github.com/scarwu/Pointless
  */
 
 namespace Pointless;
 
 use NanoCLI\Command;
 use NanoCLI\IO;
-use Compress;
+use Michelf\MarkdownExtra;
 use Resource;
+use Compress;
 use HTMLGenerator;
 use ExtensionLoader;
 
-class GenCommand extends Command {
-	public function __construct() {
-		parent::__construct();
-	}
-	
-	public function help() {
-		IO::writeln('    gen        - Generate blog');
-		IO::writeln('    gen -css   - Compress CSS');
-		IO::writeln('    gen -js    - Compress Javascript');
-	}
+class GenCommand extends Command
+{
+    public function __construct()
+    {
+        parent::__construct();
+    }
 
-	public function run() {
-		if(!defined('CURRENT_BLOG')) {
-			IO::writeln('Please use "poi init <blog name>" to initialize blog.', 'red');
-			return;
-		}
+    public function help()
+    {
+        IO::writeln('    gen        - Generate blog');
+        IO::writeln('    gen -css   - Compress CSS');
+        IO::writeln('    gen -js    - Compress JavaScript');
+    }
 
-		require LIBRARY . 'Helper.php';
-		require LIBRARY . 'Compress.php';
-		require LIBRARY . 'Resource.php';
-		require LIBRARY . 'HTMLGenerator.php';
-		require LIBRARY . 'ExtensionLoader.php';
-		require PLUGIN . 'Markdown/markdown.php';
+    public function run()
+    {
+        if (!checkDefaultBlog()) {
+            return false;
+        }
 
-		// Initialize Blog
-		initBlog();
-		
-		$start = microtime(TRUE);
+        initBlog();
 
-		if($this->hasOptions('css')) {
-			if(file_exists(PUBLIC_FOLDER . 'main.css'))
-				unlink(PUBLIC_FOLDER . 'main.css');
+        require LIBRARY . '/Helper.php';
+        require LIBRARY . '/Compress.php';
+        require LIBRARY . '/HTMLGenerator.php';
+        require LIBRARY . '/ExtensionLoader.php';
 
-			IO::writeln("Compress CSS ...", 'yellow');
-			$Compress = new Compress();
-			$Compress->css(THEME_CSS, PUBLIC_FOLDER . 'theme');
+        // Load Theme Config
+        require THEME . '/Theme.php';
+        Resource::set('theme', $theme);
 
-			$time = sprintf("%.3f", abs(microtime(TRUE) - $start));
-			IO::writeln("Generate finish, $time s.", 'green');
+        $blog = Resource::get('config')['blog'];
+        $github = Resource::get('config')['github'];
 
-			return;
-		}
+        $start = microtime(true);
 
-		if($this->hasOptions('js')) {
-			if(file_exists(PUBLIC_FOLDER . 'main.js'))
-				unlink(PUBLIC_FOLDER . 'main.js');
+        if ($this->hasOptions('css')) {
+            if (file_exists(TEMP . '/theme/main.css')) {
+                unlink(TEMP . '/theme/main.css');
+            }
 
-			IO::writeln("Compress Javascript ...", 'yellow');
-			$Compress = new Compress();
-			$Compress->js(THEME_JS, PUBLIC_FOLDER . 'theme');
+            IO::writeln('Compress CSS ...', 'yellow');
+            $Compress = new Compress();
+            $Compress->css();
 
-			$time = sprintf("%.3f", abs(microtime(TRUE) - $start));
-			IO::writeln("Generate finish, $time s.", 'green');
+            $time = sprintf("%.3f", abs(microtime(true) - $start));
+            IO::writeln("Generate finish, $time s.", 'green');
 
-			return;
-		}
+            return true;
+        }
 
-		$start_mem = memory_get_usage();
+        if ($this->hasOptions('js')) {
+            if (file_exists(TEMP . '/main.js')) {
+                unlink(TEMP . '/main.js');
+            }
 
-		// Clear Public Files
-		IO::writeln("Clean Public Files ...", 'yellow');
-		recursiveRemove(PUBLIC_FOLDER);
-		
-		// Create README
-		$handle = fopen(PUBLIC_FOLDER . 'README.md', 'w+');
-		fwrite($handle, '[Powered by Pointless](https://github.com/scarwu/Pointless)');
-		fclose($handle);
+            IO::writeln('Compress Javascript ...', 'yellow');
+            $Compress = new Compress();
+            $Compress->js();
 
-		// Create Github CNAME
-		if(GITHUB_CNAME) {
-			IO::writeln("Create Github CNAME ...", 'yellow');
-			$handle = fopen(PUBLIC_FOLDER . 'CNAME', 'w+');
-			fwrite($handle, BLOG_DNS);
-			fclose($handle);
-		}
+            $time = sprintf("%.3f", abs(microtime(true) - $start));
+            IO::writeln("Generate finish, $time s.", 'green');
 
-		// Copy Resource Files
-		IO::writeln("Copy Resource Files ...", 'yellow');
-		recursiveCopy(RESOURCE_FOLDER, PUBLIC_FOLDER);
-		
-		if(file_exists(THEME_RESOURCE))
-			recursiveCopy(THEME_RESOURCE, PUBLIC_FOLDER . 'theme');
+            return true;
+        }
 
-		// Compress CSS and JavaScript
-		IO::writeln("Compress CSS & Javascript ...", 'yellow');
-		$compress = new Compress();
-		$compress->js(THEME_JS, PUBLIC_FOLDER . 'theme');
-		$compress->css(THEME_CSS, PUBLIC_FOLDER . 'theme');
-		
-		// Initialize Resource Pool
-		IO::writeln("Initialize Resource Pool ...", 'yellow');
-		$this->initResourcePool();
+        $start_mem = memory_get_usage();
 
-		// Generate HTML Pages
-		IO::writeln("Generating HTML ...", 'yellow');
-		$html = new HTMLGenerator();
-		$html->run();
+        // Clear Public Files
+        IO::writeln('Clean Public Files ...', 'yellow');
+        recursiveRemove(TEMP, TEMP);
 
-		// Generate Extension
-		IO::writeln("Generating Extensions ...", 'yellow');
-		$extension = new ExtensionLoader();
-		$extension->run();
-		
-		$time = sprintf("%.3f", abs(microtime(TRUE) - $start));
-		$mem = sprintf("%.3f", abs(memory_get_usage() - $start_mem) / 1024);
-		IO::writeln("Generate finish, $time s and memory usage $mem kb.", 'green');
-	}
+        // Create README
+        $readme = '[Powered by Pointless](https://github.com/scarwu/Pointless)';
+        file_put_contents(TEMP . '/README.md', $readme);
 
-	/**
-	 * Initialize Resource Pool
-	 */
-	private function initResourcePool() {
-		$article = array();
+        // Create Github CNAME
+        if ($github['cname']) {
+            IO::writeln('Create Github CNAME ...', 'yellow');
+            file_put_contents(TEMP . '/CNAME', $blog['dn']);
+        }
 
-		// Handle Markdown
-		IO::writeln("Load and Initialize Markdown");
-		$handle = opendir(MARKDOWN_FOLDER);
-		while($filename = readdir($handle)) {
-			if('.' == $filename || '..' == $filename || !preg_match('/.md$/', $filename))
-				continue;
+        // Copy Resource Files
+        IO::writeln('Copy Resource Files ...', 'yellow');
+        recursiveCopy(RESOURCE, TEMP);
 
-			preg_match(REGEX_RULE, file_get_contents(MARKDOWN_FOLDER . $filename), $match);
-			$temp = json_decode($match[1], TRUE);
+        if (file_exists(THEME . '/Resource')) {
+            recursiveCopy(THEME . '/Resource', TEMP . '/theme');
+        }
 
-			if(NULL == $temp) {
-				IO::writeln('Attribute Error: ' . $filename, 'red');
-				exit(1);
-			}
+        // Compress CSS and JavaScript
+        IO::writeln('Compress CSS & Javascript ...', 'yellow');
+        $compress = new Compress();
+        $compress->js();
+        $compress->css();
 
-			if('static' == $temp['type']) {
-				Resource::append('static', array(
-					'title' => $temp['title'],
-					'url' => $temp['url'],
-					'content' => Markdown($match[2]),
-					'message' => isset($temp['message']) ? $temp['message'] : TRUE
-				));
-			}
+        // Initialize Resource Pool
+        IO::writeln('Initialize Resource Pool ...', 'yellow');
+        $this->initResourcePool();
 
-			if('article' == $temp['type']) {
-				if(!(isset($temp['publish']) ? $temp['publish'] : TRUE))
-					continue;
+        // Generate HTML Pages
+        IO::writeln('Generating HTML ...', 'yellow');
+        $html = new HTMLGenerator();
+        $html->run();
 
-				$date = explode('-', $temp['date']);
-				$time = explode(':', $temp['time']);
-				$timestamp = strtotime("$date[2]-$date[1]-$date[0] {$temp['time']}");
+        // Generate Extension
+        IO::writeln('Generating Extensions ...', 'yellow');
+        $extension = new ExtensionLoader();
+        $extension->run();
 
-				// Generate custom url
-				$url = str_replace(
-					array(
-						':year', ':month', ':day',
-						':hour', ':minute', ':second', ':timestamp',
-						':title', ':url'
-					),
-					array(
-						$date[0], $date[1], $date[2],
-						$time[0], $time[1], $time[2], $timestamp,
-						$temp['title'], $temp['url']
-					),
-					ARTICLE_URL
-				);
-				$url = trim($url, '/');
+        $time = sprintf("%.3f", abs(microtime(true) - $start));
+        $mem = sprintf("%.3f", abs(memory_get_usage() - $start_mem) / 1024);
+        IO::writeln("Generate finish, $time s and memory usage $mem kb.", 'green');
 
-				$article[] = array(
-					'title' => $temp['title'],
-					'url' => $url,
-					'content' => Markdown($match[2]),
-					'date' => $temp['date'],
-					'time' => $temp['time'],
-					'category' => $temp['category'],
-					'keywords' => $temp['keywords'],
-					'tag' => explode('|', $temp['tag']),
-					'year' => $date[0],
-					'month' => $date[1],
-					'day' => $date[2],
-					'hour' => $time[0],
-					'minute' => $time[1],
-					'second' => $time[2],
-					'timestamp' => $timestamp,
-					'message' => isset($temp['message']) ? $temp['message'] : TRUE
-				);
-			}
-		}
-		closedir($handle);
+        // Change Owner
+        if (isset($_SERVER['SUDO_USER'])) {
+            $user = fileowner(HOME);
+            $group = filegroup(HOME);
+            system("chown $user.$group -R " . TEMP);
+        }
+    }
 
-		usort($article, function($a, $b) {
-			if ($a['timestamp'] == $b['timestamp'])
-				return 0;
+    /**
+     * Initialize Resource Pool
+     */
+    private function initResourcePool()
+    {
+        $article = [];
+        $article_url = Resource::get('config')['article_url'];
+        $article_url = trim($article_url, '/');
 
-			return $a['timestamp'] > $b['timestamp'] ? -1 : 1;
-		});
+        // Handle Markdown
+        IO::writeln('Load and Initialize Markdown');
+        $handle = opendir(MARKDOWN);
+        while ($filename = readdir($handle)) {
+            if (!preg_match('/.md$/', $filename)) {
+                continue;
+            }
 
-		Resource::set('article', $article);
-	}
+            preg_match(REGEX_RULE, file_get_contents(MARKDOWN . "/$filename"), $match);
+            $post = json_decode($match[1], true);
+
+            if (null === $post) {
+                IO::writeln("Attribute Error: $filename", 'red');
+                exit(1);
+            }
+
+            if (!$post['publish']) {
+                continue;
+            }
+
+            // Append Static Page
+            if ('static' === $post['type']) {
+                Resource::append('static', [
+                    'title' => $post['title'],
+                    'url' => $post['url'],
+                    'content' => MarkdownExtra::defaultTransform($match[2]),
+                    'message' => $post['message']
+                ]);
+            }
+
+            // Create Article
+            if ('article' === $post['type']) {
+                list($year, $month, $day) = explode('-', $post['date']);
+                list($hour, $minute, $second) = explode(':', $post['time']);
+                $timestamp = strtotime("$day-$month-$year {$post['time']}");
+
+                // Generate custom url
+                $url = str_replace([
+                    ':year', ':month', ':day',
+                    ':hour', ':minute', ':second', ':timestamp',
+                    ':title', ':url'
+                ], [
+                    $year, $month, $day,
+                    $hour, $minute, $second, $timestamp,
+                    $post['title'], $post['url']
+                ], $article_url);
+
+                $post['tag'] = explode('|', $post['tag']);
+                sort($post['tag']);
+
+                $article[$timestamp] = [
+                    'title' => $post['title'],
+                    'url' => $url,
+                    'content' => MarkdownExtra::defaultTransform($match[2]),
+                    'date' => $post['date'],
+                    'time' => $post['time'],
+                    'category' => $post['category'],
+                    'keywords' => $post['keywords'],
+                    'tag' => $post['tag'],
+                    'year' => $year,
+                    'month' => $month,
+                    'day' => $day,
+                    'hour' => $hour,
+                    'minute' => $minute,
+                    'second' => $second,
+                    'timestamp' => $timestamp,
+                    'message' => $post['message']
+                ];
+            }
+        }
+        closedir($handle);
+
+        krsort($article);
+        Resource::set('article', $article);
+    }
 }

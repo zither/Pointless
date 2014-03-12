@@ -1,11 +1,11 @@
 <?php
 /**
  * Template Helper
- * 
- * @package		Pointless
- * @author		ScarWu
- * @copyright	Copyright (c) 2012-2014, ScarWu (http://scar.simcz.tw/)
- * @link		http://github.com/scarwu/Pointless
+ *
+ * @package     Pointless
+ * @author      ScarWu
+ * @copyright   Copyright (c) 2012-2014, ScarWu (http://scar.simcz.tw/)
+ * @link        http://github.com/scarwu/Pointless
  */
 
 /**
@@ -15,8 +15,9 @@
  * @param string
  * @return string
  */
-function linkTo($link, $name) {
-	return '<a href="' . linkEncode($link) . '">' . $name . '</a>';
+function linkTo($link, $name)
+{
+    return '<a href="' . linkEncode($link) . '">' . $name . '</a>';
 }
 
 /**
@@ -25,10 +26,11 @@ function linkTo($link, $name) {
  * @param string
  * @return string
  */
-function linkEncode($link) {
-	$segments = explode('/', $link);
-	$segments = array_map('rawurlencode', $segments);
-	$link = implode('/', $segments);
+function linkEncode($link)
+{
+    $segments = explode('/', $link);
+    $segments = array_map('rawurlencode', $segments);
+    $link = implode('/', $segments);
 
-	return $link;
+    return $link;
 }

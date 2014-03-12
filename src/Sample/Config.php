@@ -1,68 +1,52 @@
 <?php
-// Blog Name
-define('BLOG_NAME', 'Pointless');
+$config = [
+    'blog' => [
+        'name' => 'Pointless',
+        'slogan' => 'A Useful Static Blog Generator',
+        'footer' => 'Powerd By Pointless',
+        'description' => '',
+        'keywords' => '',
 
-// Blog Slogan
-define('BLOG_SLOGAN', 'The Static Blog Generator');
+        'lang' => 'en', // en | zh-tw | zh-cn | other
 
-// Blog Description
-define('BLOG_DESCRIPTION', '');
+        'dn' => 'localhost',
+        'base' => '/',
 
-// Blog Key Words
-define('BLOG_KEYWORDS', '');
+        'author' => null,
+        'email' => null,
 
-// Blog Footer
-define('BLOG_FOOTER', 'Powerd By Pointless');
+        'disqus_shortname' => null, // Disqus Shortname
+        'google_analytics' => null, // Google Analytics - UA-xxxxxxxx-x
+    ],
 
-// Blog Language
-// en | zh-tw | zh-cn | other
-define('BLOG_LANG', 'en');
+    'theme' => 'Classic',
 
-// Blog Path - If blog is't put on root then modify this
-define('BLOG_PATH', '/');
+    'extension' => [
+        'Atom',
+        'Sitemap'
+    ],
 
-// Blog Domain Name - For google search
-define('BLOG_DNS', 'localhost');
+    'feed_quantity' => 5,
+    'article_quantity' => 5,
 
-// Blog Theme
-define('BLOG_THEME', 'Classic');
+    // :year, :month, :day
+    // :hour, :minute, :second, :timestamp
+    // :title, :url
+    'article_url' => ':year/:month/:day/:url',
 
-// Author Name
-define('AUTHOR_NAME', NULL);
+    // Reference: http://php.net/manual/en/timezones.php
+    'timezone' => 'Etc/UTC',
 
-// Author Email
-define('AUTHOR_EMAIL', NULL);
+    'github' => [
+        'account' => null,
+        'repo' => null,
+        'branch' => null,
+        'cname' => false
+    ],
 
-// RSS' or Atom's Article Quantity
-define('RSS_ATOM_QUANTITY', 5);
+    // Reference: http://php.net/manual/en/function.iconv.php
+    // Big5 | GBK | other => UTF-8
+    'encoding' => null,
 
-// Article Quantity
-define('ARTICLE_QUANTITY', 10);
-
-// Article URL Format
-// :year, :month, :day
-// :hour, :minute, :second, :timestamp
-// :title, :url
-define('ARTICLE_URL', ':year/:month/:day/:url');
-
-// Disqus Shrotname
-define('DISQUS_SHORTNAME', NULL);
-
-// Google Analystic - UA-xxxxxxxx-x
-define('GOOGLE_ANALYSTIC', NULL);
-
-// Github Deployment Setting
-define('GITHUB_ACCOUNT', NULL);
-define('GITHUB_REPO', NULL);
-define('GITHUB_BRANCH', NULL);
-define('GITHUB_CNAME', FALSE);
-
-// Local Encoding - For console, If your environment encoding is't utf-8 then modify this
-// Big5 | GBK | other
-define('LOCAL_ENCODING', NULL);
-
-// Default file editor
-define('FILE_EDITOR', 'vi');
-
-// Time Zone
-define('TIMEZONE', 'Asia/Taipei');
+    'editor' => 'vi'
+];

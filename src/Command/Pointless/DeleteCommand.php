@@ -1,11 +1,11 @@
 <?php
 /**
  * Pointless Delete Command
- * 
- * @package		Pointless
- * @author		ScarWu
- * @copyright	Copyright (c) 2012-2014, ScarWu (http://scar.simcz.tw/)
- * @link		http://github.com/scarwu/Pointless
+ *
+ * @package     Pointless
+ * @author      ScarWu
+ * @copyright   Copyright (c) 2012-2014, ScarWu (http://scar.simcz.tw/)
+ * @link        http://github.com/scarwu/Pointless
  */
 
 namespace Pointless;
@@ -13,75 +13,107 @@ namespace Pointless;
 use NanoCLI\Command;
 use NanoCLI\IO;
 
-class DeleteCommand extends Command {
-	public function __construct() {
-		parent::__construct();
-	}
+class DeleteCommand extends Command
+{
+    public function __construct()
+    {
+        parent::__construct();
+    }
 
-	public function help() {
-		IO::writeln('    delete     - Delete article');
-		IO::writeln('    delete -s  - Delete Static Page');
-	}
+    public function help()
+    {
+        IO::writeln('    delete <number or not>');
+        IO::writeln('               - Delete article');
+        IO::writeln('    delete -s <numebr ot not>');
+        IO::writeln('               - Delete Static Page');
+    }
 
-	public function run() {
-		if(!defined('CURRENT_BLOG')) {
-			IO::writeln('Please use "poi init <blog name>" to initialize blog.', 'red');
-			return;
-		}
+    public function run()
+    {
+        if (!checkDefaultBlog()) {
+            return false;
+        }
 
-		// Initialize Blog
-		initBlog();
+        initBlog();
 
-		$data = array();
-		$handle = opendir(MARKDOWN_FOLDER);
-		while($filename = readdir($handle)) {
-			if('.' == $filename || '..' == $filename)
-				continue;
+        $list = [];
+        $handle = opendir(MARKDOWN);
+        while ($filename = readdir($handle)) {
+            if (!preg_match('/.md$/', $filename)) {
+                continue;
+            }
 
-			preg_match(REGEX_RULE, file_get_contents(MARKDOWN_FOLDER . $filename), $match);
-			$temp = json_decode($match[1], TRUE);
+            preg_match(REGEX_RULE, file_get_contents(MARKDOWN . "/$filename"), $match);
+            $post = json_decode($match[1], true);
 
-			if($this->hasOptions('s')) {
-				if('static' != $temp['type'])
-					continue;
+            if ($this->hasOptions('s')) {
+                if ('static' !== $post['type']) {
+                    continue;
+                }
 
-				$data[$temp['title']]['title'] = $temp['title'];
-				$data[$temp['title']]['path'] = MARKDOWN_FOLDER . $filename;
-			}
-			else {
-				if('article' != $temp['type'])
-					continue;
+                $index = $post['title'];
 
-				$index = $temp['date'] . $temp['time'];
+                $list[$index]['msg'] = $post['title'];
+                $list[$index]['title'] = $post['title'];
+                $list[$index]['path'] = MARKDOWN . "/$filename";
+            } else {
+                if ('article' !== $post['type']) {
+                    continue;
+                }
 
-				$data[$index]['title'] = $temp['title'];
-				$data[$index]['date'] = $temp['date'];
-				$data[$index]['path'] = MARKDOWN_FOLDER . $filename;
-			}
-		}
-		closedir($handle);
+                $index = $post['date'] . $post['time'];
 
-		uksort($data, 'strnatcasecmp');
+                $list[$index]['msg'] = "{$post['date']} {$post['title']}";
+                $list[$index]['title'] = $post['title'];
+                $list[$index]['path'] = MARKDOWN . "/$filename";
+            }
+        }
+        closedir($handle);
+        uksort($list, 'strnatcasecmp');
 
-		$count = 0;
-		foreach($data as $key => $article) {
-			if($this->hasOptions('s'))
-				IO::writeln(sprintf("[%3d] %s", $count, $article['title']));
-			else
-				IO::writeln(sprintf("[%3d] %s %s", $count, $article['date'], $article['title']));
+        if (0 === count($list)) {
+            IO::writeln('No post(s).', 'red');
 
-			$data[$count++] = $article;
-			unset($data[$key]);
-		}
-		
-		$number = IO::question("\nEnter Number:\n-> ", NULL, function($answer) use($data) {
-			return is_numeric($answer) && $answer >= 0 && $answer < count($data);
-		});
+            return false;
+        }
 
-		IO::write(sprintf("Are you sure delete - %s? [n/y]\n-> ", $data[$number]['title']), 'red');
-		if(IO::read() == "y") {
-			system('rm ' . $data[$number]['path']);
-			IO::writeln(sprintf('Successfully removed %s.', $data[$number]['title']));
-		}
-	}
+        $number = $this->getNumber();
+        if ($number < 0 || $number >= count($list)) {
+            $number = null;
+        }
+
+        if (null === $number) {
+            $count = 0;
+            foreach ($list as $post) {
+                IO::writeln(sprintf("[%3d] ", $count) . $post['msg']);
+
+                $count++;
+            }
+
+            $number = IO::question("\nEnter Number:\n-> ", null, function ($answer) use ($list) {
+                return is_numeric($answer) && $answer >= 0 && $answer < count($list);
+            });
+        }
+
+        $path = $list[array_keys($list)[$number]]['path'];
+        $title = $list[array_keys($list)[$number]]['title'];
+        IO::write("Are you sure delete post \"$title\"? [n/y]\n-> ", 'red');
+        if ("y" === IO::read()) {
+            system("rm $path");
+            IO::writeln("Successfully removed post \"$title\".");
+        }
+    }
+
+    private function getNumber()
+    {
+        if ($this->hasOptions('s')) {
+            return $this->getOptions('s');
+        }
+
+        if ($this->hasArguments()) {
+            return $this->getArguments()[0];
+        }
+
+        return null;
+    }
 }
