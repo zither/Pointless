@@ -3,7 +3,7 @@ $config = [
     'blog' => [
         'name' => 'MiniThinker',
         'slogan' => '努力学习那些想要知道的东西',
-        'footer' => 'Powerd By <a href="https://github.com/scarwu/Pointless">Pointless</a>',
+        'footer' => 'Powered By <a href="https://github.com/scarwu/Pointless">Pointless</a>',
         'description' => '记录在生活以及自学编程过程中好玩的东西。',
         'keywords' => 'MiniThinker, Programming, Computer, PHP, Scheme',
         
