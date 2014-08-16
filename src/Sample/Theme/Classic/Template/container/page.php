@@ -28,9 +28,11 @@
 		<div class="content">
 			<?=preg_replace('/&lt;!--more-->(.|\n)*/', '', $article['content'])?>
 		</div>
+        <?php if (strpos($article['content'], '&lt;!--more-->') !== false) : ?>
 		<a class="more" href="<?="{$blog['base']}article/{$article['url']}"?>">
 			Read more
 		</a>
+        <?php endif?>
 	</article>
 	<?php endforeach; ?>
 	<div class="bar">
