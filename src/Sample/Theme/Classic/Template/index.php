@@ -26,6 +26,7 @@
 		</div>
 	</div>
 	<!-- Define and Load Javascript -->
+    <script src="http://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
 	<script src="<?=$blog['base']?>theme/main.js"></script>
 	<?php if(NULL != $blog['google_analytics']): ?>
 	<script>

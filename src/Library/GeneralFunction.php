@@ -35,7 +35,7 @@ function bindData($_data, $_path) {
  * @param string
  */
 function writeTo($data, $path) {
-    if(!preg_match('/\.(html|xml)$/', $path)) {
+    if(!preg_match('/\.(html|xml|txt)$/', $path)) {
         if(!file_exists($path)) {
             mkdir($path, 0755, TRUE);
         }

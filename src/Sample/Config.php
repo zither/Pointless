@@ -38,6 +38,9 @@ $config = [
         'branch' => 'master',
         'cname' => true
     ],
+    'robots' => [
+        ['User-agent' => '*', 'Disallow' => ['/tag/', '/page/', '/category/'], 'Allow' => []]
+    ],
 
     // synchronize raw files
     'synchronize_raw_md' => true,
