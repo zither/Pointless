@@ -8,14 +8,7 @@
 				Category:
 				<?=linkTo("{$blog['base']}category/{$post['category']}", $post['category'])?>
 			</span>
-			-
-			<span class="tag">
-				Tag: 
-				<?php foreach((array)$post['tag'] as $index => $tag): ?>
-				<?php $post['tag'][$index] = linkTo("{$blog['base']}tag/$tag", $tag); ?>
-				<?php endforeach; ?>
-				<?=join($post['tag'], ', ')?>
-			</span>
+
 			<?php if(NULL != $blog['disqus_shortname']): ?>
             -
 			<span class="comment">

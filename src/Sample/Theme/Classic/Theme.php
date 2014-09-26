@@ -13,7 +13,6 @@ $theme = [
     ],
     'template' => [
         'side' => [
-            'tag.php',
             'category.php',
             'archive.php'
         ]

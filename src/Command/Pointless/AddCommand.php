@@ -34,7 +34,6 @@ class AddCommand extends Command {
         ];
 
         if(!$this->hasOptions('s')) {
-            $info['tag'] = IO::question("Enter Tag:\n-> ");
             $info['category'] = IO::question("Enter Category:\n-> ");
         }
 
@@ -84,7 +83,6 @@ class AddCommand extends Command {
                 'type' => 'article',
                 'title' => $info['title'],
                 'url' => $this->replace($info['url']),
-                'tag' => $info['tag'],
                 'category' => $info['category'],
                 'keywords' => null,
                 'date' => date("Y-m-d", $time),

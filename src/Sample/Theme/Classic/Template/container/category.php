@@ -16,13 +16,6 @@
 						Archive:
 						<?=linkTo("{$blog['base']}archive/{$article['year']}", $article['year'])?>
 					</span>
-					<span class="tag">
-						Tag:
-						<?php foreach((array)$article['tag'] as $index => $tag): ?>
-						<?php $article['tag'][$index] = linkTo("{$blog['base']}tag/$tag", $tag); ?>
-						<?php endforeach; ?>
-						<?=join($article['tag'], ', ')?>
-					</span>
 				</article>
 				<?php endforeach; ?>
 			</div>

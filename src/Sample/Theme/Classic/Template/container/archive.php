@@ -16,13 +16,6 @@
 						Category:
 						<?=linkTo("{$blog['base']}category/{$article['category']}", $article['category'])?>
 					</span>
-					<span class="tag">
-						Tag: 
-						<?php foreach((array)$article['tag'] as $index => $tag): ?>
-						<?php $article['tag'][$index] = linkTo("{$blog['base']}tag/$tag", $tag); ?>
-						<?php endforeach; ?>
-						<?=join($article['tag'], ', ')?>
-					</span>
 				</article>
 				<?php endforeach; ?>
 			</div>
