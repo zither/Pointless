@@ -194,7 +194,6 @@ class GenCommand extends Command {
                     'time' => $post['time'],
                     'category' => $post['category'],
                     'keywords' => $post['keywords'],
-                    'tag' => explode('|', $post['tag']),
                     'year' => $year,
                     'month' => $month,
                     'day' => $day,
