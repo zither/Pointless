@@ -7,9 +7,9 @@ html, body {
 }
 
 body {
-	font-family: '微軟正黑體', '儷黑Pro', 'Ubuntu', Arial;
 	background: #fff;
-	font-size: 14px;
+    font-size:14px;
+    font: 16px Helvetica, Tahoma, Arial,Georgia,"Lora","STSong","NSimSun",sans-serif;
 }
 
 code {
@@ -20,8 +20,7 @@ code {
     outline: none;
 }
 
-a,
-a:visited {
+a, a:visited {
 	text-decoration: none;
 	color: #333;
 }
@@ -33,7 +32,7 @@ a:hover {
 
 #main {
 	margin: 0 auto;
-	max-width: 1000px;
+	max-width: 960px;
 }
 
 #main .border {
@@ -74,14 +73,14 @@ header > h2 {
     text-align:center;
 	border-top: solid 0px #DFDFDF;
 	background: #fff;
-	padding: 0 75px;
+	padding: 0 10px;
 }
 
 #nav > a,
 #nav > a:visited {
 	text-align: center;
-	padding: 0 15px;
-	display: inline-block;
+	margin: 0 15px;
+	display: inline;
 	height: 45px;
 	line-height: 45px;
 	color: #000;
@@ -117,7 +116,7 @@ header > h2 {
 
 #container {
 	border-top: solid 1px #DFDFDF;
-	padding: 15px 50px;
+	padding: 15px 10px;
 }
 
 #container > div > .title,
@@ -128,16 +127,18 @@ header > h2 {
 }
 
 #container .bar .new {
-	text-align: left;
+	float: left;
+    text-align:left;
 	display: inline-block;
-	width: 100%;
+	width: 50%;
 	height: 20px;
 }
 
 #container .bar .old {
-	text-align: right;
+	float: right;
+    text-align:right;
 	display: inline-block;
-	width: 100%;
+	width: 50%;
 	height: 20px;
 }
 
@@ -183,24 +184,25 @@ footer {
 	text-align: center;
 	height: 50px;
 	line-height: 50px;
-	font-size: 12px;
 	color: #666;
 }
 pre {
     display:block;
     padding:0.5em;
+    font-size:14px;
     background-color:#282B2E;
+    white-space:pre;
     border: 1px #000 solid;
-    margin: 0 2em;
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
     border-radius: 5px;
 }
 
 article img {
+    display:block;
 	max-width: 100%;
 	background: #ffffff;
-	padding: 5px;
+	padding: 3px;
 	border: 1px solid #CCC;
 	-moz-border-radius: 3px;
 	-webkit-border-radius: 3px;
@@ -214,6 +216,28 @@ article .info a{
     text-decoration:underline;
 }
 
+.article-list {
+    display:block;
+    font-size:18px;
+    margin-bottom:10px;
+}
+.article-list .date {
+    color:#999;
+    margin-right:20px;
+}
+.article-list .title {
+    text-decoration:underline;
+}
+.article-list .category {
+    float:right;
+    background-color:#999;
+    padding:3px;
+    border-radius:3px;
+}
+.category a {
+    color:#fff;
+}
+
 #article article, #page article {
 	margin-bottom: 50px;
 }
@@ -224,6 +248,7 @@ article .info a{
 
 .content p {
     text-indent:2em;
+    line-height:1.7em !important;
 }
 
 .content a {

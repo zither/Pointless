@@ -19,6 +19,7 @@
 			</header>
 			<div id="nav">
 				<a href="<?=$blog['base']?>">Home</a>
+				<a href="<?="{$blog['base']}linux"?>">Linux</a>
 				<a href="<?="{$blog['base']}about"?>">About</a>
 			</div>
 			<div id="container"><?=$block['container']?></div>
